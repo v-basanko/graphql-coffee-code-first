@@ -31,6 +31,7 @@ import { DrinksResolver } from './drinks/drinks.resolver';
       database: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
+      logging: true,
     }),
     CoffeesModule,
   ],
