@@ -1,16 +1,18 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import {
-  Column, CreateDateColumn,
+  Column,
+  CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
-  PrimaryGeneratedColumn
-} from "typeorm";
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Flavor } from './flavor.entity';
+import { IDrink } from '../../common/interfaces/drink.interface';
 
 @Entity()
-@ObjectType({ description: 'Coffee model' })
-export class Coffee {
+@ObjectType({ description: 'Coffee model', implements: () => IDrink })
+export class Coffee implements IDrink {
   @PrimaryGeneratedColumn()
   @Field(() => ID, { description: 'A unique identifier' })
   id: number;

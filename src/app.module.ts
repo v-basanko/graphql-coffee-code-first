@@ -7,7 +7,9 @@ import { join } from 'path';
 import { CoffeesModule } from './coffees/coffees.module';
 import * as process from 'node:process';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DateScalar } from "./common/scalars/date.scalar";
+import { DateScalar } from './common/scalars/date.scalar';
+import { Tea } from './teas/entities/tea.entity';
+import { DrinksResolver } from './drinks/drinks.resolver';
 
 @Module({
   imports: [
@@ -17,6 +19,7 @@ import { DateScalar } from "./common/scalars/date.scalar";
       buildSchemaOptions: {
         numberScalarMode: 'integer',
         dateScalarMode: 'timestamp',
+        orphanedTypes: [Tea],
       },
     }),
     TypeOrmModule.forRoot({
@@ -32,6 +35,6 @@ import { DateScalar } from "./common/scalars/date.scalar";
     CoffeesModule,
   ],
   controllers: [AppController],
-  providers: [AppService, DateScalar],
+  providers: [AppService, DateScalar, DrinksResolver],
 })
 export class AppModule {}
