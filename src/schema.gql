@@ -2,6 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""Coffee model"""
 type Coffee {
   """A unique identifier"""
   id: ID!
@@ -17,6 +18,8 @@ type Query {
 
 type Mutation {
   createCoffee(createCoffeeInput: CreateCoffeeInput!): Coffee
+  updateCoffee(id: Int!, updateCoffeeInput: UpdateCoffeeInput!): Coffee!
+  removeCoffee(id: Int!): Coffee!
 }
 
 input CreateCoffeeInput {
@@ -24,4 +27,11 @@ input CreateCoffeeInput {
   name: String!
   brand: String!
   flavors: [String!]!
+}
+
+input UpdateCoffeeInput {
+  """A new coffee name"""
+  name: String
+  brand: String
+  flavors: [String!]
 }
