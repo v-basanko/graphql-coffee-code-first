@@ -7,6 +7,7 @@ import { join } from 'path';
 import { CoffeesModule } from './coffees/coffees.module';
 import * as process from 'node:process';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DateScalar } from "./common/scalars/date.scalar";
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       buildSchemaOptions: {
         numberScalarMode: 'integer',
+        dateScalarMode: 'timestamp',
       },
     }),
     TypeOrmModule.forRoot({
@@ -30,6 +32,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     CoffeesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, DateScalar],
 })
 export class AppModule {}
